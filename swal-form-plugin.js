@@ -24,13 +24,13 @@ function SwalForm(formFields) {
 
 // helper methods
 extend(SwalForm.prototype, {
-  formClass: 'swalForm',
+  formClass: 'swal-form',
   generateHtmlForm: function() {
     var formInnerHtml = this.formFields.map(toFormTag).reduce(toSingleString)
     return  '<div class="' + this.formClass + '">' + formInnerHtml + '</div>'
 
     function toFormTag(field) {
-      return '<input' +
+      return '<input type="text"' +
         ' id="' + field.id + '"' +
         ' placeholder="' + field.placeholder + '"' +
       '/>'
