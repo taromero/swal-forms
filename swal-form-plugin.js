@@ -13,6 +13,7 @@ swal.withForm = function() {
   var htmlForm = swalForm.generateHtmlForm()
   swalForm.insertFormInSwalModal(htmlForm)
   swalForm.allowClickingDirectlyOnInputs()
+  swalForm.focusOnFirstInput()
 }
 
 // constructor for helper object
@@ -83,9 +84,6 @@ extend(SwalForm.prototype, {
       return div.firstChild
     }
   },
-  makeInputsWritable: function() {
-    document.querySelector('.sweet-alert').removeAttribute('tabIndex')
-  },
   removeSwalForm: function() {
     var formTag = document.querySelector('.' + this.formClass)
     formTag && document.querySelector('.sweet-alert').removeChild(formTag)
@@ -94,6 +92,13 @@ extend(SwalForm.prototype, {
     // sweet-alert attaches an onblur handler which prevents clicks on of non
     // button elements until click is made on the modal
     document.querySelector('.sweet-alert button.confirm').onblur = function() {}
+    document.querySelector('.sweet-alert button.cancel').onblur = function() {}
+  },
+  focusOnFirstInput: function() {
+    var self = this
+    setTimeout(function() {
+      document.querySelector('#' + self.formFields[0].id).focus();
+    })
   }
 })
 

@@ -8,7 +8,7 @@ For the time being, the only 2 accepted attributes are `id` and `placeholder`. `
 
 It **sends the form attributes as an object to the callback function**. This values are added to `this.swalForm` as it seemed like a better option for preventing compatibility issues with other plugins (the other options I considered was sending it as the second argument).
 
-### Example:
+##### Example:
 
 ```javascript
 swal.withForm({
@@ -47,3 +47,6 @@ swal.withForm({
 ```
 
 This will show the input with "Sample Id Field" as the placeholder. If no placeholder is wanted, you have to explicitly set it to ' ' (or any empty string).
+
+##### Usage
+Just add the css and js files after sweet alert ones.
