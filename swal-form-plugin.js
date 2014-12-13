@@ -12,9 +12,7 @@ swal.withForm = function() {
 
   var htmlForm = swalForm.generateHtmlForm()
   swalForm.insertFormInSwalModal(htmlForm)
-  // by default swal modals have tabIndex=-1 which prevents
-  // text selection and user input on tags
-  swalForm.makeInputsWritable()
+  swalForm.allowClickingDirectlyOnInputs()
 }
 
 // constructor for helper object
@@ -91,6 +89,11 @@ extend(SwalForm.prototype, {
   removeSwalForm: function() {
     var formTag = document.querySelector('.' + this.formClass)
     formTag && document.querySelector('.sweet-alert').removeChild(formTag)
+  },
+  allowClickingDirectlyOnInputs: function() {
+    // sweet-alert attaches an onblur handler which prevents clicks on of non
+    // button elements until click is made on the modal
+    document.querySelector('.sweet-alert button.confirm').onblur = function() {}
   }
 })
 
