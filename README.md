@@ -31,3 +31,19 @@ swal.withForm({
 I need to add css to beautify the form :).
 
 It's written without semicolons because that's the way we roll (and IMHO they are unnecessary if you now the cases where they are needed).
+
+If no placeholder is supplied, it will be inferred from the id field. Example:
+
+```javascript
+swal.withForm({
+    title: 'Cool Swal-Forms example with no explicit placeholder',
+    formFields: [
+        { id: 'sampleIdField'}
+    ]
+}, function(isConfirm) {
+    // do whatever you want with the form data
+    console.log(this.swalForm); // { name: 'user name', nickname: 'what the user sends' }
+})
+```
+
+This will show the input with "Sample Id Field" as the placeholder. If no placeholder is wanted, you have to explicitly set it to ' ' (or any empty string).

@@ -30,9 +30,17 @@ extend(SwalForm.prototype, {
     return  '<div class="' + this.formClass + '">' + formInnerHtml + '</div>'
 
     function toFormTag(field) {
+      var placeholder = field.placeholder
+      if (!placeholder) {
+        placeholder = field.id
+          // insert a space before all caps
+          .replace(/([A-Z])/g, ' $1')
+          // uppercase the first character
+          .replace(/^./, function(str){ return str.toUpperCase(); })
+      }
       return '<input type="text"' +
         ' id="' + field.id + '"' +
-        ' placeholder="' + field.placeholder + '"' +
+        ' placeholder="' + placeholder + '"' +
       '/>'
     }
 
