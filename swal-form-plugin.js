@@ -1,6 +1,7 @@
 swal.withForm = function() {
   var swalForm = new SwalForm(arguments[0].formFields)
-  swalForm.addWayToGetFormValuesToDoneFunction(arguments)
+  swalForm.removeSwalForm()
+  swalForm.addWayToGetFormValuesInDoneFunction(arguments)
 
   // forward arguments
   swal.apply({}, arguments)
@@ -17,10 +18,8 @@ function SwalForm(formFields) {
 extend(SwalForm.prototype, {
   formClass: 'swalForm',
   generateHtmlForm: function() {
-    var formString = '<div class="' + this.formClass + '"'
-    formString += this.formFields.map(toFormTag).reduce(toSingleString)
-    formString += '</div>'
-    return formString
+    var formInnerHtml = this.formFields.map(toFormTag).reduce(toSingleString)
+    return  '<div class="' + this.formClass + '">' + formInnerHtml + '</div>'
 
     function toFormTag(field) {
       return '<input' +
@@ -33,7 +32,7 @@ extend(SwalForm.prototype, {
       return tagSting1 + tagSting2
     }
   },
-  addWayToGetFormValuesToDoneFunction: function(swalArgs) {
+  addWayToGetFormValuesInDoneFunction: function(swalArgs) {
     var self = this
     var doneFunction = swalArgs[1]
     swalArgs[1] = function() {
@@ -71,6 +70,10 @@ extend(SwalForm.prototype, {
   },
   makeInputsWritable: function() {
     document.querySelector('.sweet-alert').removeAttribute('tabIndex')
+  },
+  removeSwalForm: function() {
+    var formTag = document.querySelector('.' + this.formClass)
+    formTag && document.querySelector('.sweet-alert').removeChild(formTag)
   }
 })
 
