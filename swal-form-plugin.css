@@ -1,3 +1,7 @@
+.swal-form {
+    padding-top: 3%;
+}
+
 .swal-form input.nice-input  {
     display: block;
     margin: 0;
