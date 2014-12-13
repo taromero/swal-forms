@@ -30,17 +30,26 @@ extend(SwalForm.prototype, {
 
     function toFormTag(field) {
       var placeholder = field.placeholder
+      var id = field.id || ''
+      var value = field.value || ''
+
       if (!placeholder) {
-        placeholder = field.id
+        placeholder = id
           // insert a space before all caps
           .replace(/([A-Z])/g, ' $1')
           // uppercase the first character
           .replace(/^./, function(str){ return str.toUpperCase(); })
       }
-      return '<input type="text"' +
-        ' id="' + field.id + '"' +
+      var clazz = ''
+      if (field.type != 'checkbox' && field.type != 'radio') {
+        clazz = 'nice-input'
+      }
+      return '<input class="' + clazz + '" type="' + (field.type || 'text') + '"' +
+        ' id="' + id + '"' +
         ' placeholder="' + placeholder + '"' +
-      '/>'
+        ' name="' + field.name + '"' +
+        ' value="' + value + '"' +
+      '/>' + value
     }
 
     function toSingleString(tagSting1, tagSting2) {
@@ -64,7 +73,7 @@ extend(SwalForm.prototype, {
 
     function toValuableAttrs(tag) {
       var attr = {}
-      attr[tag.id] = tag.value
+      attr[tag.id || tag.name] = tag.value
       return attr
     }
 

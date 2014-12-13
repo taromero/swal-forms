@@ -1,4 +1,4 @@
-.swal-form input[type='text']  {
+.swal-form input.nice-input  {
     display: block;
     margin: 0;
     width: 96%;
@@ -9,8 +9,8 @@
     border: solid 1px #dcdcdc;
     transition: box-shadow 0.3s, border 0.3s;
 }
-.swal-form input[type='text'] :focus,
-.swal-form input[type='text'] .focus {
+.swal-form input.nice-input:focus,
+.swal-form input.nice-input.focus {
     outline: none;
     border: solid 1px #707070;
     box-shadow: 0 0 5px 1px #969696;
