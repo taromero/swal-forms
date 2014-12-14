@@ -5,7 +5,7 @@
     var swalForm = new SwalForm(arguments[0].formFields)
     // prevent successive calls to add duplicated form fields
     swalForm.removeSwalForm()
-    // make form values inserted by the user available on `doneFunction`
+    // make form values inserted by the user available attr `doneFunction`
     swalForm.addWayToGetFormValuesInDoneFunction(arguments)
 
     // forward arguments
@@ -85,21 +85,26 @@
       function toSingleObject(obj1, obj2) {
         return extendPreventingOverrides(obj1, obj2)
 
+        // for checkboxes we want to obtain all selected values in an array
         function extendPreventingOverrides(a, b) {
-          for (var key in b) {
-            if (b.hasOwnProperty(key)) {
-              if (a.hasOwnProperty(key)) {
-                if (Array.isArray(a[key])) {
-                  a[key] = a[key].push(b[key])
-                } else {
-                  a[key] = [a[key], b[key]]
-                }
-              } else {
-                a[key] = b[key]
-              }
+          Object.keys(b).forEach(addContentFromBtoA)
+          return a
+
+          function addContentFromBtoA(key) {
+            if (a.hasOwnProperty(key)) {
+              mergeIntoAnArray(a, b, key)
+            } else {
+              a[key] = b[key]
             }
           }
-          return a
+        }
+
+        function mergeIntoAnArray(a, b, key) {
+          if (Array.isArray(a[key])) {
+            a[key].push(b[key])
+          } else {
+            a[key] = [a[key], b[key]]
+          }
         }
       }
     },
