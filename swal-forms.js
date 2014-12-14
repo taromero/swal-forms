@@ -5,7 +5,7 @@
     var swalForm = new SwalForm(arguments[0].formFields)
     // prevent successive calls to add duplicated form fields
     swalForm.removeSwalForm()
-    // make form values inserted by the user available attr `doneFunction`
+    // make form values inserted by the user available at `doneFunction`
     swalForm.addWayToGetFormValuesInDoneFunction(arguments)
 
     // forward arguments
@@ -27,9 +27,8 @@
   extend(SwalForm.prototype, {
     formClass: 'swal-form',
     generateHtmlForm: function() {
-      var formInnerHtml = this.formFields
-                                .map(toFormTag)
-                                .reduce(toSingleString)
+      var formInnerHtml = this.formFields.map(toFormTag).reduce(toSingleString)
+
       return  '<div class="' + this.formClass + '">' + formInnerHtml + '</div>'
 
       function toFormTag(field) {
