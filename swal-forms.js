@@ -33,11 +33,12 @@
       function toFormTag(field) {
         var id = field.id || ''
         var placeholder = field.placeholder || camelCaseToHuman(id)
-        var value = field.label || field.value || ''
-        var type = field.label || field.type || 'text'
+        var value = field.value || ''
+        var label = (isRadioOrCheckbox(field) ? value : '')
+        var type = field.type || 'text'
         var clazz = (field.type != 'checkbox' && field.type != 'radio' ? 'nice-input' : '')
 
-        return value + '<input class="' + clazz + '" type="' + type + '"' +
+        return label + '<input class="' + clazz + '" type="' + type + '"' +
           ' id="' + id + '"' +
           ' placeholder="' + placeholder + '"' +
           ' name="' + field.name + '"' +
@@ -70,10 +71,6 @@
 
       function uncheckedRadiosAndCheckboxes(tag) {
         return (isRadioOrCheckbox(tag) ? tag.checked : true)
-
-        function isRadioOrCheckbox(tag) {
-          return tag.type == 'radio' || tag.type == 'checkbox'
-        }
       }
 
       function toValuableAttrs(tag) {
@@ -146,6 +143,10 @@
       })
     }
   })
+
+  function isRadioOrCheckbox(tag) {
+    return tag.type == 'radio' || tag.type == 'checkbox'
+  }
 
   function extend(a, b){
     for (var key in b) {
