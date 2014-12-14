@@ -31,29 +31,18 @@
 
       function toFormTag(field) {
         var id = field.id || ''
-        var placeholder = getPlaceholder(field)
-        var value = field.value || ''
-        var type = field.type || 'text'
+        var placeholder = field.placeholder || camelCaseToHuman(id)
+        var value = field.label || field.value || ''
+        var type = field.label || field.type || 'text'
         var clazz = getInputClass(field)
 
-        return '<input class="' + clazz + '" type="' + type + '"' +
+        return value + '<input class="' + clazz + '" type="' + type + '"' +
           ' id="' + id + '"' +
           ' placeholder="' + placeholder + '"' +
           ' name="' + field.name + '"' +
           ' value="' + value + '"' +
-        '/>' + value
-
-        function getPlaceholder(field) {
-          var placeholder = field.placeholder
-          if (!placeholder) {
-            placeholder = id
-              // insert a space before all caps
-              .replace(/([A-Z])/g, ' $1')
-              // uppercase the first character
-              .replace(/^./, function(str){ return str.toUpperCase(); })
-          }
-          return placeholder
-        }
+          ' title="' + placeholder + '"' +
+        '/>'
 
         function getInputClass(field) {
           var clazz = ''
@@ -135,5 +124,17 @@
     }
 
     return a
+  }
+
+  function camelCaseToHuman(arg) {
+    if (arg) {
+      return arg
+        // insert a space before all caps
+        .replace(/([A-Z])/g, ' $1')
+        // uppercase the first character
+        .replace(/^./, function(str){ return str.toUpperCase() })
+    } else {
+      return ''
+    }
   }
 })()
