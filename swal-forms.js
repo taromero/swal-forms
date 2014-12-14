@@ -15,6 +15,7 @@
     swalForm.insertFormInSwalModal(htmlForm)
     swalForm.allowClickingDirectlyOnInputs()
     swalForm.focusOnFirstInput()
+    swalForm.markFirstRadioButtons()
   }
 
   // constructor for helper object
@@ -34,7 +35,7 @@
         var placeholder = field.placeholder || camelCaseToHuman(id)
         var value = field.label || field.value || ''
         var type = field.label || field.type || 'text'
-        var clazz = getInputClass(field)
+        var clazz = (field.type != 'checkbox' && field.type != 'radio' ? 'nice-input' : '')
 
         return value + '<input class="' + clazz + '" type="' + type + '"' +
           ' id="' + id + '"' +
@@ -43,14 +44,6 @@
           ' value="' + value + '"' +
           ' title="' + placeholder + '"' +
         '/>'
-
-        function getInputClass(field) {
-          var clazz = ''
-          if (field.type != 'checkbox' && field.type != 'radio') {
-            clazz = 'nice-input'
-          }
-          return clazz
-        }
       }
 
       function toSingleString(tagSting1, tagSting2) {
@@ -70,7 +63,18 @@
       var inputHtmlCollection = document.querySelector('div.' + this.formClass).getElementsByTagName('input')
       var inputArray = [].slice.call(inputHtmlCollection)
 
-      return inputArray.map(toValuableAttrs).reduce(toSingleObject)
+      return inputArray
+              .filter(uncheckedRadiosAndCheckboxes)
+              .map(toValuableAttrs)
+              .reduce(toSingleObject)
+
+      function uncheckedRadiosAndCheckboxes(tag) {
+        return (isRadioOrCheckbox(tag) ? tag.checked : true)
+
+        function isRadioOrCheckbox(tag) {
+          return tag.type == 'radio' || tag.type == 'checkbox'
+        }
+      }
 
       function toValuableAttrs(tag) {
         var attr = {}
@@ -79,7 +83,24 @@
       }
 
       function toSingleObject(obj1, obj2) {
-        return extend(obj1, obj2)
+        return extendPreventingOverrides(obj1, obj2)
+
+        function extendPreventingOverrides(a, b) {
+          for (var key in b) {
+            if (b.hasOwnProperty(key)) {
+              if (a.hasOwnProperty(key)) {
+                if (Array.isArray(a[key])) {
+                  a[key] = a[key].push(b[key])
+                } else {
+                  a[key] = [a[key], b[key]]
+                }
+              } else {
+                a[key] = b[key]
+              }
+            }
+          }
+          return a
+        }
       }
     },
     insertFormInSwalModal: function(htmlFormString) {
@@ -104,14 +125,19 @@
       document.querySelector('.sweet-alert button.confirm').onblur = function() {}
       document.querySelector('.sweet-alert button.cancel').onblur = function() {}
     },
+    getSelector: function() {
+      return (this.formFields[0].id ? '#' + this.formFields[0].id : '[name="' + this.formFields[0].name + '"]')
+    },
     focusOnFirstInput: function() {
       var self = this
       setTimeout(function() {
-        document.querySelector(getSelector()).focus();
-
-        function getSelector() {
-          return (self.formFields[0].id ? '#' + self.formFields[0].id : '[name="' + self.formFields[0].name + '"]')
-        }
+        document.querySelector(self.getSelector()).focus();
+      })
+    },
+    markFirstRadioButtons: function() {
+      var self = this
+      setTimeout(function() {
+        document.querySelector(self.getSelector()).checked = true
       })
     }
   })
@@ -122,7 +148,6 @@
         a[key] = b[key]
       }
     }
-
     return a
   }
 
