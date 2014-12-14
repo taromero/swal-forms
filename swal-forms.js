@@ -27,7 +27,9 @@
   extend(SwalForm.prototype, {
     formClass: 'swal-form',
     generateHtmlForm: function() {
-      var formInnerHtml = this.formFields.map(toFormTag).reduce(toSingleString)
+      var formInnerHtml = this.formFields
+                                .map(toFormTag)
+                                .reduce(toSingleString)
       return  '<div class="' + this.formClass + '">' + formInnerHtml + '</div>'
 
       function toFormTag(field) {
@@ -37,8 +39,14 @@
         var label = (isRadioOrCheckbox(field) ? value : '')
         var type = field.type || 'text'
         var clazz = (field.type != 'checkbox' && field.type != 'radio' ? 'nice-input' : '')
+        var conditionalLineBreak = ''
 
-        return label + '<input class="' + clazz + '" type="' + type + '"' +
+        if (isRadioOrCheckbox(field) && nameChangedFromLastField.call(this, field)) {
+          conditionalLineBreak = '<br>'
+        }
+        this.lastFieldName = field.name
+
+        return conditionalLineBreak + label + '<input class="' + clazz + '" type="' + type + '"' +
           ' id="' + id + '"' +
           ' placeholder="' + placeholder + '"' +
           ' name="' + field.name + '"' +
@@ -49,6 +57,10 @@
 
       function toSingleString(tagSting1, tagSting2) {
         return tagSting1 + tagSting2
+      }
+
+      function nameChangedFromLastField(field) {
+        return this.lastFieldName != field.name
       }
     },
     addWayToGetFormValuesInDoneFunction: function(swalArgs) {
