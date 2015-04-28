@@ -19,3 +19,9 @@
     border: solid 1px #707070;
     box-shadow: 0 0 5px 1px #969696;
 }
+
+.swal-form .patch-swal-styles-for-inputs {
+  width: initial !important;
+  height: initial !important;
+  display: initial !important;
+}

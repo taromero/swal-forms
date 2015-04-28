@@ -100,8 +100,9 @@
     insertFormInSwalModal: function(htmlFormString) {
       var formTag = stringToTag(htmlFormString)
       var sweetAlertModal = document.querySelector('.sweet-alert')
-      var cancelButtonTag = sweetAlertModal.querySelector('.cancel')
-      sweetAlertModal.insertBefore(formTag, cancelButtonTag)
+      var buttonContainerTag = sweetAlertModal.querySelector('.sa-button-container') || sweetAlertModal.querySelector('.cancel')
+      // insert form before swal bottom buttons
+      sweetAlertModal.insertBefore(formTag, buttonContainerTag)
 
       function stringToTag(string) {
         var div = document.createElement('div')
@@ -164,12 +165,12 @@
       },
       toHtml: function() {
         return t("<input id='{id}' class='{clazz}' type='{type}' name='{name}'" +
-                  " value='{value}' title='{placeholder}' placeholder='{placeholder}'>" +
+                  " value='{value}' title='{placeholder}' placeholder='{placeholder}'>" + 
                 "<label for='{name}'>{label}</label>", input)
       }
     }
     input.label = input.isRadioOrCheckbox() ? input.value : ''
-    input.clazz = !input.isRadioOrCheckbox() ? 'nice-input' : ''
+    input.clazz = !input.isRadioOrCheckbox() ? 'nice-input' : 'patch-swal-styles-for-inputs'
 
     return input
 
