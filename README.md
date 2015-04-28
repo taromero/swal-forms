@@ -7,6 +7,10 @@ https://cdn.rawgit.com/taromero/swal-forms/master/live-demo/live-demo.html
 
 Check `live-demo/live-demo.js` to seee the example's code.
 
+##### Screenshot
+
+![Example](https://raw.githubusercontent.com/taromero/swal-forms/master/sample-screenshot.png)
+
 #### Description
 
 It's totally unobtrusive with regular calls to `swal`, but it adds it a new method `swal.withForm` that wraps `swal` and lets you send an extra parameter `formFields` where you send the field data that will be use for generating the form.
