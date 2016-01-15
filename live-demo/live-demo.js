@@ -39,7 +39,15 @@ function complex() {
 
           { name: 'skills', value: 'JS', type: 'checkbox' },
           { name: 'skills', value: 'Ruby', type: 'checkbox' },
-          { name: 'skills', value: 'Java', type: 'checkbox' }
+          { name: 'skills', value: 'Java', type: 'checkbox' },
+
+          { id: 'select', type: 'select',options: [
+            {value:"teste1",text: "teste1"},
+            {value:"teste2",text: "teste2"},
+            {value:"teste3",text: "teste3"},
+            {value:"teste4",text: "teste4"},
+            {value:"teste5",text: "teste5"}
+          ]},
       ]
   }, function(isConfirm) {
       // do whatever you want with the form data

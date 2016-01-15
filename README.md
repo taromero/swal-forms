@@ -2,6 +2,8 @@
 
 Plugin for the Sweet Alert lib that adds an extra method to have **forms inside the modals**.
 
+Require jQuery
+
 #### Live Demo
 https://cdn.rawgit.com/taromero/swal-forms/master/live-demo/live-demo.html
 

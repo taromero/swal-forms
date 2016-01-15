@@ -160,13 +160,39 @@
       placeholder: field.placeholder || camelCaseToHuman(field.id),
       value: field.value || '',
       type: field.type || 'text',
+      options: field.options || [],
       isRadioOrCheckbox: function() {
         return isRadioOrCheckbox(input)
       },
       toHtml: function() {
-        return t("<input id='{id}' class='{clazz}' type='{type}' name='{name}'" +
-                  " value='{value}' title='{placeholder}' placeholder='{placeholder}'>" + 
-                "<label for='{name}'>{label}</label>", input)
+        if (input.type!=="select"){
+            var inputTag = $("<input/>")
+                .attr("id",input.id)
+                .attr("type",input.type)
+                .attr("name",input.name)
+                .attr("value",input.value)
+                .attr("title",input.placeholder)
+                .attr("placeholder",input.placeholder)
+                .addClass(input.clazz);
+        }else{
+            var inputTag = $("<select/>")
+                .attr("id",input.id)
+                .attr("name",input.name)
+                .attr("value",input.value)
+                .css("width","100%")
+                .addClass(input.clazz);
+            input.options.forEach(function(option){
+                option.text=option.text || "";
+                option.value=option.value || "";
+                var optionTag = $("<option/>")
+                .text(option.text)
+                .attr("value",option.value)
+                .appendTo(inputTag);
+            });
+        }
+        var labelTag  = $("<label/>").text(input.label).attr("for",input.name);
+
+        return inputTag[0].outerHTML+labelTag[0].outerHTML; 
       }
     }
     input.label = input.isRadioOrCheckbox() ? input.value : ''
