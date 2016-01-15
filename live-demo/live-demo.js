@@ -42,11 +42,11 @@ function complex() {
           { name: 'skills', value: 'Java', type: 'checkbox' },
 
           { id: 'select', type: 'select',options: [
-            {value:"teste1",text: "teste1"},
-            {value:"teste2",text: "teste2"},
-            {value:"teste3",text: "teste3"},
-            {value:"teste4",text: "teste4"},
-            {value:"teste5",text: "teste5"}
+            {value:"test1",text: "test1"},
+            {value:"test2",text: "test2"},
+            {value:"test3",text: "test3"},
+            {value:"test4",text: "test4"},
+            {value:"test5",text: "test5"}
           ]},
       ]
   }, function(isConfirm) {
