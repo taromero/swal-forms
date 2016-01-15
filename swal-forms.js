@@ -166,33 +166,21 @@
       },
       toHtml: function() {
         if (input.type!=="select"){
-            var inputTag = $("<input/>")
-                .attr("id",input.id)
-                .attr("type",input.type)
-                .attr("name",input.name)
-                .attr("value",input.value)
-                .attr("title",input.placeholder)
-                .attr("placeholder",input.placeholder)
-                .addClass(input.clazz);
+            var inputTag = t("<input id='{id}' class='{clazz}' type='{type}' name='{name}'" +
+                 " value='{value}' title='{placeholder}' placeholder='{placeholder}'>", input);
         }else{
-            var inputTag = $("<select/>")
-                .attr("id",input.id)
-                .attr("name",input.name)
-                .attr("value",input.value)
-                .css("width","100%")
-                .addClass(input.clazz);
+            var inputTag = t("<select id='{id}' class='{clazz}' name='{name}'" +
+                 " value='{value}' title='{placeholder}' style='width:100%'>", input);
             input.options.forEach(function(option){
-                option.text=option.text || "";
                 option.value=option.value || "";
-                var optionTag = $("<option/>")
-                .text(option.text)
-                .attr("value",option.value)
-                .appendTo(inputTag);
+                option.text=option.text || "";
+                inputTag+=t("<option value='{value}'>{text}</option>",option);
             });
+            inputTag+="</select>"
         }
-        var labelTag  = $("<label/>").text(input.label).attr("for",input.name);
+        var labelTag  = t("<label for='{name}'>{label}</label>",input);
 
-        return inputTag[0].outerHTML+labelTag[0].outerHTML; 
+        return inputTag+labelTag; 
       }
     }
     input.label = input.isRadioOrCheckbox() ? input.value : ''
