@@ -59,7 +59,7 @@
       return inputArray
               .filter(uncheckedRadiosAndCheckboxes)
               .map(toValuableAttrs)
-              .reduce(toSingleObject)
+              .reduce(toSingleObject,{})
 
       function uncheckedRadiosAndCheckboxes(tag) {
         return (isRadioOrCheckbox(tag) ? tag.checked : true)
