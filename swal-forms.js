@@ -46,10 +46,13 @@
     addWayToGetFormValuesInDoneFunction: function(swalArgs) {
       var swalFormInstance = this
       var doneFunction = swalArgs[1]
-      swalArgs[1] = function() {
+      swalArgs[1] = function(isConfirm) {
         // make form values available at `this` variable inside doneFunction
         this.swalForm = swalFormInstance.getFormValues()
         doneFunction.apply(this, arguments)
+
+        //clean form to not interfere in normals sweet alerts
+        document.querySelector('.swal-form').innerHTML=""
       }
     },
     getFormValues: function() {
