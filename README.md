@@ -1,5 +1,7 @@
 ### Swal-Forms
 
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
+
 Plugin for the Sweet Alert lib that adds an extra method to have **forms inside the modals**.
 
 #### Live Demo

@@ -1,0 +1,10 @@
+{
+  "standard": {
+    "global": [
+      "swal", "console"
+    ],
+    "ignore": [
+      "live-demo/sweet-alert.js"
+    ]
+  }
+}
