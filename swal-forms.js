@@ -57,7 +57,7 @@
       }
     },
     getFormValues: function () {
-      var inputHtmlCollection = document.querySelector('div.' + this.formClass).getElementsByTagName('input')
+      var inputHtmlCollection = document.getElementsByClassName('swal-form-field')
       var inputArray = [].slice.call(inputHtmlCollection)
 
       return inputArray
@@ -143,9 +143,11 @@
       }
     },
     addTabOrder: function () {
-      var formFields = document.querySelectorAll('.swal-form input')
-      for (var index = 0; index < formFields.length - 1; index++) {
-        var myInput = formFields[index]
+      var formFields = Array.prototype.slice.call(document.querySelectorAll('.swal-form .swal-form-field'))
+      formFields.forEach(addToTabNavigation)
+
+      function addToTabNavigation (formField, index) {
+        var myInput = formField
         var nextInput = formFields[index + 1]
 
         var keyHandler = function (e) {
@@ -192,21 +194,21 @@
       toHtml: function () {
         var inputTag
         if (input.type !== 'select') {
-          inputTag = t("<input id='{id}' class='{clazz}' type='{type}' name='{name}'" +
+          inputTag = t("<input id='{id}' class='{clazz} swal-form-field' type='{type}' name='{name}'" +
             " value='{value}' title='{placeholder}' placeholder='{placeholder}'>", input)
         } else {
-          inputTag = t("<select id='{id}' class='{clazz}' name='{name}'" +
-            " value='{value}' title='{placeholder}' style='width:100%'>", input)
-          input.options.forEach(function (option) {
-            option.value = option.value || ''
-            option.text = option.text || ''
-            inputTag += t("<option value='{value}'>{text}</option>", option)
-          })
-          inputTag += '</select>'
+          inputTag = t("<select id='{id}' class='{clazz} swal-form-field' name='{name}'" +
+            " value='{value}' title='{placeholder}' style='width:100%'>", input) +
+              input.options.reduce(toHtmlOptions, '') +
+            '</select>'
         }
         var labelTag = t("<label for='{name}'>{label}</label>", input)
 
         return inputTag + labelTag
+
+        function toHtmlOptions (optionsString, option) {
+          return optionsString + t("<option value='{value}'>{text}</option>", option)
+        }
       }
     }
     input.label = input.isRadioOrCheckbox() ? input.value : ''
@@ -228,7 +230,7 @@
   // string interpolation hack
   function t (template, data) {
     for (var key in data) {
-      template = template.replace(new RegExp('{' + key + '}', 'g'), data[key])
+      template = template.replace(new RegExp('{' + key + '}', 'g'), data[key] || '')
     }
     return template
   }
