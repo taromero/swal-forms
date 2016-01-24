@@ -1,0 +1,226 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'install', 'standard', '-' ]
+2 info using npm@1.3.10
+3 info using node@v0.10.25
+4 warn package.json @ No repository field.
+5 verbose readDependencies using package.json deps
+6 verbose cache add [ 'standard', null ]
+7 verbose cache add name=undefined spec="standard" args=["standard",null]
+8 verbose parsed url { protocol: null,
+8 verbose parsed url   slashes: null,
+8 verbose parsed url   auth: null,
+8 verbose parsed url   host: null,
+8 verbose parsed url   port: null,
+8 verbose parsed url   hostname: null,
+8 verbose parsed url   hash: null,
+8 verbose parsed url   search: null,
+8 verbose parsed url   query: null,
+8 verbose parsed url   pathname: 'standard',
+8 verbose parsed url   path: 'standard',
+8 verbose parsed url   href: 'standard' }
+9 verbose cache add [ '-', null ]
+10 verbose cache add name=undefined spec="-" args=["-",null]
+11 verbose parsed url { protocol: null,
+11 verbose parsed url   slashes: null,
+11 verbose parsed url   auth: null,
+11 verbose parsed url   host: null,
+11 verbose parsed url   port: null,
+11 verbose parsed url   hostname: null,
+11 verbose parsed url   hash: null,
+11 verbose parsed url   search: null,
+11 verbose parsed url   query: null,
+11 verbose parsed url   pathname: '-',
+11 verbose parsed url   path: '-',
+11 verbose parsed url   href: '-' }
+12 silly lockFile f410e046-standard standard
+13 verbose lock standard /home/bruno/.npm/f410e046-standard.lock
+14 silly lockFile 3bc15c8a- -
+15 verbose lock - /home/bruno/.npm/3bc15c8a-.lock
+16 silly lockFile 3bc15c8a- -
+17 silly lockFile 3bc15c8a- -
+18 silly lockFile f410e046-standard standard
+19 silly lockFile f410e046-standard standard
+20 verbose addNamed [ '-', '' ]
+21 verbose addNamed [ null, '*' ]
+22 silly lockFile c75fe0d4- -@
+23 verbose lock -@ /home/bruno/.npm/c75fe0d4-.lock
+24 verbose addNamed [ 'standard', '' ]
+25 verbose addNamed [ null, '*' ]
+26 silly lockFile 47aebb9b-standard standard@
+27 verbose lock standard@ /home/bruno/.npm/47aebb9b-standard.lock
+28 silly addNameRange { name: '-', range: '*', hasData: false }
+29 verbose url raw -
+30 verbose url resolving [ 'https://registry.npmjs.org/', './-' ]
+31 verbose url resolved https://registry.npmjs.org/-
+32 info trying registry request attempt 1 at 02:08:48
+33 http GET https://registry.npmjs.org/-
+34 silly addNameRange { name: 'standard', range: '*', hasData: false }
+35 verbose url raw standard
+36 verbose url resolving [ 'https://registry.npmjs.org/', './standard' ]
+37 verbose url resolved https://registry.npmjs.org/standard
+38 info trying registry request attempt 1 at 02:08:48
+39 verbose etag "F4RLRKSIM55D6PT0GPYIER08T"
+40 http GET https://registry.npmjs.org/standard
+41 http 304 https://registry.npmjs.org/standard
+42 silly registry.get cb [ 304,
+42 silly registry.get   { date: 'Sun, 24 Jan 2016 05:08:49 GMT',
+42 silly registry.get     via: '1.1 varnish',
+42 silly registry.get     'cache-control': 'max-age=300',
+42 silly registry.get     etag: '"F4RLRKSIM55D6PT0GPYIER08T"',
+42 silly registry.get     age: '231',
+42 silly registry.get     connection: 'keep-alive',
+42 silly registry.get     'x-served-by': 'cache-iad2141-IAD',
+42 silly registry.get     'x-cache': 'HIT',
+42 silly registry.get     'x-cache-hits': '1',
+42 silly registry.get     'x-timer': 'S1453612129.286028,VS0,VE0',
+42 silly registry.get     vary: 'Accept' } ]
+43 verbose etag standard from cache
+44 http 404 https://registry.npmjs.org/-
+45 silly registry.get cb [ 404,
+45 silly registry.get   { 'content-type': 'application/json',
+45 silly registry.get     'cache-control': 'max-age=0',
+45 silly registry.get     'content-length': '57',
+45 silly registry.get     'accept-ranges': 'bytes',
+45 silly registry.get     date: 'Sun, 24 Jan 2016 05:08:49 GMT',
+45 silly registry.get     via: '1.1 varnish',
+45 silly registry.get     age: '0',
+45 silly registry.get     connection: 'keep-alive',
+45 silly registry.get     'x-served-by': 'cache-iad2121-IAD',
+45 silly registry.get     'x-cache': 'MISS',
+45 silly registry.get     'x-cache-hits': '0',
+45 silly registry.get     'x-timer': 'S1453612129.204295,VS0,VE340' } ]
+46 silly addNameRange number 2 { name: 'standard', range: '*', hasData: true }
+47 silly addNameRange versions [ 'standard',
+47 silly addNameRange   [ '1.0.0',
+47 silly addNameRange     '1.0.1',
+47 silly addNameRange     '1.0.2',
+47 silly addNameRange     '1.1.0',
+47 silly addNameRange     '1.3.0',
+47 silly addNameRange     '1.4.0',
+47 silly addNameRange     '1.4.1',
+47 silly addNameRange     '1.4.2',
+47 silly addNameRange     '1.5.0',
+47 silly addNameRange     '2.0.0',
+47 silly addNameRange     '2.1.0',
+47 silly addNameRange     '2.1.1',
+47 silly addNameRange     '2.2.0',
+47 silly addNameRange     '2.2.1',
+47 silly addNameRange     '2.2.2',
+47 silly addNameRange     '2.2.3',
+47 silly addNameRange     '2.2.4',
+47 silly addNameRange     '2.2.5',
+47 silly addNameRange     '2.2.6',
+47 silly addNameRange     '2.3.0',
+47 silly addNameRange     '2.3.1',
+47 silly addNameRange     '2.3.2',
+47 silly addNameRange     '2.4.0',
+47 silly addNameRange     '2.4.1',
+47 silly addNameRange     '2.4.2',
+47 silly addNameRange     '2.4.3',
+47 silly addNameRange     '2.4.4',
+47 silly addNameRange     '2.4.5',
+47 silly addNameRange     '2.5.0',
+47 silly addNameRange     '2.6.0',
+47 silly addNameRange     '2.6.1',
+47 silly addNameRange     '2.6.2',
+47 silly addNameRange     '2.6.3',
+47 silly addNameRange     '2.6.4',
+47 silly addNameRange     '2.6.5',
+47 silly addNameRange     '2.7.0',
+47 silly addNameRange     '2.7.1',
+47 silly addNameRange     '2.7.2',
+47 silly addNameRange     '2.7.3',
+47 silly addNameRange     '2.8.0',
+47 silly addNameRange     '2.9.0',
+47 silly addNameRange     '2.10.0',
+47 silly addNameRange     '3.0.0-alpha',
+47 silly addNameRange     '3.0.0-beta',
+47 silly addNameRange     '3.0.0-beta2',
+47 silly addNameRange     '3.0.0-beta3',
+47 silly addNameRange     '2.11.0',
+47 silly addNameRange     '3.0.0-beta4',
+47 silly addNameRange     '3.0.0',
+47 silly addNameRange     '3.1.0',
+47 silly addNameRange     '3.1.1',
+47 silly addNameRange     '3.1.2',
+47 silly addNameRange     '3.2.0',
+47 silly addNameRange     '3.2.1',
+47 silly addNameRange     '3.3.0',
+47 silly addNameRange     '3.3.1',
+47 silly addNameRange     '3.3.2',
+47 silly addNameRange     '3.4.0',
+47 silly addNameRange     '3.5.0',
+47 silly addNameRange     '3.6.0',
+47 silly addNameRange     '3.6.1',
+47 silly addNameRange     '3.7.0',
+47 silly addNameRange     '3.7.1',
+47 silly addNameRange     '3.7.2',
+47 silly addNameRange     '3.7.3',
+47 silly addNameRange     '3.8.0',
+47 silly addNameRange     '3.9.0',
+47 silly addNameRange     '3.11.0',
+47 silly addNameRange     '3.11.1',
+47 silly addNameRange     '3.13.0',
+47 silly addNameRange     '3.13.1',
+47 silly addNameRange     '3.13.2',
+47 silly addNameRange     '4.0.0',
+47 silly addNameRange     '4.0.1',
+47 silly addNameRange     '4.1.0',
+47 silly addNameRange     '4.1.1',
+47 silly addNameRange     '4.2.0',
+47 silly addNameRange     '4.2.1',
+47 silly addNameRange     '4.3.0',
+47 silly addNameRange     '4.3.1',
+47 silly addNameRange     '4.3.2',
+47 silly addNameRange     '4.3.3',
+47 silly addNameRange     '4.4.0',
+47 silly addNameRange     '4.4.1',
+47 silly addNameRange     '4.5.0',
+47 silly addNameRange     '4.5.1',
+47 silly addNameRange     '4.5.2',
+47 silly addNameRange     '4.5.3',
+47 silly addNameRange     '4.5.4',
+47 silly addNameRange     '5.0.0-0',
+47 silly addNameRange     '5.0.1-0',
+47 silly addNameRange     '5.0.0-2',
+47 silly addNameRange     '5.0.0-3',
+47 silly addNameRange     '5.0.0-4',
+47 silly addNameRange     '5.0.0-5',
+47 silly addNameRange     '5.0.0-6',
+47 silly addNameRange     '5.0.0-7',
+47 silly addNameRange     '5.0.0-8',
+47 silly addNameRange     '5.0.0',
+47 silly addNameRange     '5.0.1',
+47 silly addNameRange     '5.0.2',
+47 silly addNameRange     '5.1.0',
+47 silly addNameRange     '5.1.1',
+47 silly addNameRange     '5.2.0',
+47 silly addNameRange     '5.2.1',
+47 silly addNameRange     '5.2.2',
+47 silly addNameRange     '5.3.0',
+47 silly addNameRange     '5.3.1',
+47 silly addNameRange     '5.4.0',
+47 silly addNameRange     '5.4.1' ] ]
+48 verbose addNamed [ 'standard', '5.4.1' ]
+49 verbose addNamed [ '5.4.1', '5.4.1' ]
+50 silly lockFile 5732f37d-standard-5-4-1 standard@5.4.1
+51 verbose lock standard@5.4.1 /home/bruno/.npm/5732f37d-standard-5-4-1.lock
+52 silly addNameRange number 2 { name: '-', range: '*', hasData: true }
+53 silly addNameRange versions [ undefined, [] ]
+54 error TypeError: Cannot read property 'latest' of undefined
+54 error     at next (/usr/share/npm/lib/cache.js:687:35)
+54 error     at /usr/share/npm/lib/cache.js:675:5
+54 error     at saved (/usr/share/npm/node_modules/npm-registry-client/lib/get.js:142:7)
+54 error     at /usr/lib/nodejs/graceful-fs/polyfills.js:133:7
+54 error     at Object.oncomplete (fs.js:107:15)
+55 error If you need help, you may report this log at:
+55 error     <http://github.com/isaacs/npm/issues>
+55 error or email it to:
+55 error     <npm-@googlegroups.com>
+56 error System Linux 3.19.0-43-generic
+57 error command "/usr/bin/nodejs" "/usr/bin/npm" "install" "standard" "-"
+58 error cwd /home/bruno/git/swal-forms
+59 error node -v v0.10.25
+60 error npm -v 1.3.10
+61 error type non_object_property_load
+62 verbose exit [ 1, true ]

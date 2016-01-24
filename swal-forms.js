@@ -1,4 +1,4 @@
-(function () {
+;(function () {
   // extend swal with a function for adding forms
   swal.withForm = function () {
     // initialize with field values supplied on `swal.withForm` call
@@ -47,13 +47,13 @@
     addWayToGetFormValuesInDoneFunction: function (swalArgs) {
       var swalFormInstance = this
       var doneFunction = swalArgs[1]
-      swalArgs[1] = function(isConfirm) {
+      swalArgs[1] = function (isConfirm) {
         // make form values available at `this` variable inside doneFunction
         this.swalForm = swalFormInstance.getFormValues()
         doneFunction.apply(this, arguments)
 
-        //clean form to not interfere in normals sweet alerts
-        document.querySelector('.swal-form').innerHTML=""
+        // clean form to not interfere in normals sweet alerts
+        document.querySelector('.swal-form').innerHTML = ''
       }
     },
     getFormValues: function () {
@@ -61,9 +61,9 @@
       var inputArray = [].slice.call(inputHtmlCollection)
 
       return inputArray
-              .filter(uncheckedRadiosAndCheckboxes)
-              .map(toValuableAttrs)
-              .reduce(toSingleObject,{})
+        .filter(uncheckedRadiosAndCheckboxes)
+        .map(toValuableAttrs)
+        .reduce(toSingleObject, {})
 
       function uncheckedRadiosAndCheckboxes (tag) {
         return (isRadioOrCheckbox(tag) ? tag.checked : true)
@@ -142,26 +142,25 @@
         document.querySelector(this.getSelector()).checked = true
       }
     },
-    addTabOrder: function(){
-      var formFields = document.querySelectorAll(".swal-form input")
-      for (var index=0;index<formFields.length-1;index++){
-          var myInput = formFields[index]
-          var nextInput = formFields[index+1];
+    addTabOrder: function () {
+      var formFields = document.querySelectorAll('.swal-form input')
+      for (var index = 0; index < formFields.length - 1; index++) {
+        var myInput = formFields[index]
+        var nextInput = formFields[index + 1]
 
-          var  keyHandler=function(e) {
-              var TABKEY = 9;
-              if(e.keyCode == TABKEY) {
-                  var next = this
-                  setTimeout(function(){next.focus()})
-              }
+        var keyHandler = function (e) {
+          var TABKEY = 9
+          if (e.keyCode === TABKEY) {
+            var next = this
+            setTimeout(function () { next.focus() })
           }
+        }
 
-          if(myInput.addEventListener ) {
-              myInput.addEventListener('keydown',keyHandler.bind(nextInput),false);
-          } else if(myInput.attachEvent ) {
-              myInput.attachEvent('onkeydown',keyHandler.bind(nextInput)); /* damn IE hack */
-          }
-
+        if (myInput.addEventListener) {
+          myInput.addEventListener('keydown', keyHandler.bind(nextInput), false)
+        } else if (myInput.attachEvent) {
+          myInput.attachEvent('onkeydown', keyHandler.bind(nextInput)) /* damn IE hack */
+        }
       }
     }
   })
@@ -187,26 +186,27 @@
       value: field.value || '',
       type: field.type || 'text',
       options: field.options || [],
-      isRadioOrCheckbox: function() {
+      isRadioOrCheckbox: function () {
         return isRadioOrCheckbox(input)
       },
-      toHtml: function() {
-        if (input.type!=="select"){
-            var inputTag = t("<input id='{id}' class='{clazz}' type='{type}' name='{name}'" +
-                 " value='{value}' title='{placeholder}' placeholder='{placeholder}'>", input);
-        }else{
-            var inputTag = t("<select id='{id}' class='{clazz}' name='{name}'" +
-                 " value='{value}' title='{placeholder}' style='width:100%'>", input);
-            input.options.forEach(function(option){
-                option.value=option.value || "";
-                option.text=option.text || "";
-                inputTag+=t("<option value='{value}'>{text}</option>",option);
-            });
-            inputTag+="</select>"
+      toHtml: function () {
+        var inputTag
+        if (input.type !== 'select') {
+          inputTag = t("<input id='{id}' class='{clazz}' type='{type}' name='{name}'" +
+            " value='{value}' title='{placeholder}' placeholder='{placeholder}'>", input)
+        } else {
+          inputTag = t("<select id='{id}' class='{clazz}' name='{name}'" +
+            " value='{value}' title='{placeholder}' style='width:100%'>", input)
+          input.options.forEach(function (option) {
+            option.value = option.value || ''
+            option.text = option.text || ''
+            inputTag += t("<option value='{value}'>{text}</option>", option)
+          })
+          inputTag += '</select>'
         }
-        var labelTag  = t("<label for='{name}'>{label}</label>",input);
+        var labelTag = t("<label for='{name}'>{label}</label>", input)
 
-        return inputTag+labelTag; 
+        return inputTag + labelTag
       }
     }
     input.label = input.isRadioOrCheckbox() ? input.value : ''
