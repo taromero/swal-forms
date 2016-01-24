@@ -16,6 +16,8 @@
     swalForm.allowClickingDirectlyOnInputs()
     swalForm.focusOnFirstInput()
     swalForm.markFirstRadioButtons()
+	console.log(swalForm)
+    setTimeout(swalForm.addTabOrder,1000)
   }
 
   // constructor for helper object
@@ -139,6 +141,31 @@
 
       function markAsChecked() {
         document.querySelector(this.getSelector()).checked = true
+      }
+    },
+    addTabOrder: function(){
+      var formFields = document.querySelectorAll(".swal-form input")
+      for (var index=0;index<formFields.length-1;++index){
+          var myInput = formFields[index]
+          if(formFields.length===index)//add next focus on tab to all element, except the last one
+              return;
+          var nextInput = formFields[index+1];
+
+		console.log(myInput)
+		console.log(nextInput)
+          function keyHandler(e) {
+              var TABKEY = 9;
+              if(e.keyCode == TABKEY) {
+                  nextInput.focus()
+              }
+          }
+
+          if(myInput.addEventListener ) {
+              myInput.addEventListener('keydown',keyHandler,false);
+          } else if(myInput.attachEvent ) {
+              myInput.attachEvent('onkeydown',keyHandler); /* damn IE hack */
+          }
+
       }
     }
   })
