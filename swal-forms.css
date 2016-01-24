@@ -1,7 +1,7 @@
 .swal-form {
   padding-top: 3%;
-  overflow: scroll;
-  height: 300px;
+  overflow: auto;
+  height: auto;
 }
 
 .swal-form input.nice-input  {
