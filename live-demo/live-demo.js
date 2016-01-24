@@ -12,8 +12,8 @@ function sample1 () {
     confirmButtonText: 'Get form data!',
     closeOnConfirm: true,
     formFields: [
-        { id: 'name', placeholder: 'Name Field' },
-        { id: 'nickname', placeholder: 'Add a cool nickname' }
+      { id: 'name', placeholder: 'Name Field' },
+      { id: 'nickname', placeholder: 'Add a cool nickname' }
     ]
   }, function (isConfirm) {
     // do whatever you want with the form data
@@ -39,7 +39,15 @@ function complex () {
 
       { name: 'skills', value: 'JS', type: 'checkbox' },
       { name: 'skills', value: 'Ruby', type: 'checkbox' },
-      { name: 'skills', value: 'Java', type: 'checkbox' }
+      { name: 'skills', value: 'Java', type: 'checkbox' },
+
+      { id: 'select', type: 'select', options: [
+          {value: 'test1', text: 'test1'},
+          {value: 'test2', text: 'test2'},
+          {value: 'test3', text: 'test3'},
+          {value: 'test4', text: 'test4'},
+          {value: 'test5', text: 'test5'}
+      ]}
     ]
   }, function (isConfirm) {
     // do whatever you want with the form data
