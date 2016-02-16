@@ -213,7 +213,7 @@
         }
       }
     }
-    input.label = input.isRadioOrCheckbox() ? input.value : ''
+    input.label = input.isRadioOrCheckbox() ? (typeof field.label !== 'undefined' ? field.label : input.value) : ''
     input.clazz = !input.isRadioOrCheckbox() ? 'nice-input' : 'patch-swal-styles-for-inputs'
 
     return input
