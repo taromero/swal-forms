@@ -50,10 +50,12 @@
       swalArgs[1] = function (isConfirm) {
         // make form values available at `this` variable inside doneFunction
         this.swalForm = swalFormInstance.getFormValues()
-        doneFunction.apply(this, arguments)
 
-        // clean form to not interfere in normals sweet alerts
-        document.querySelector('.swal-form').innerHTML = ''
+        if (doneFunction.apply(this, arguments) !== false) {
+
+          // clean form to not interfere in normals sweet alerts
+          document.querySelector('.swal-form').innerHTML = ''
+        }
       }
     },
     getFormValues: function () {
@@ -211,7 +213,7 @@
         }
       }
     }
-    input.label = input.isRadioOrCheckbox() ? input.value : ''
+    input.label = input.isRadioOrCheckbox() ? (typeof field.label !== 'undefined' ? field.label : input.value) : ''
     input.clazz = !input.isRadioOrCheckbox() ? 'nice-input' : 'patch-swal-styles-for-inputs'
 
     return input
