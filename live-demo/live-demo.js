@@ -1,11 +1,12 @@
 window.onload = function () {
   document.querySelector('#sample1').addEventListener('click', sample1)
+  document.querySelector('#sampleWithPromises').addEventListener('click', sampleWithPromises)
   document.querySelector('#complex').addEventListener('click', complex)
   document.querySelector('#lotsOfFields').addEventListener('click', lotsOfFields)
 }
 
 function sample1 () {
-  swal.withForm({
+  swal.withFormAsync({
     title: 'Cool Swal-Forms example',
     text: 'Any text that you consider useful for the form',
     showCancelButton: true,
@@ -19,6 +20,25 @@ function sample1 () {
   }, function (isConfirm) {
     // do whatever you want with the form data
     console.log(this.swalForm) // { name: 'user name', nickname: 'what the user sends' }
+  })
+}
+
+function sampleWithPromises () {
+  swal.withFormAsync({
+    title: 'Cool Swal-Forms example',
+    text: 'Any text that you consider useful for the form',
+    showCancelButton: true,
+    confirmButtonColor: '#DD6B55',
+    confirmButtonText: 'Get form data!',
+    closeOnConfirm: true,
+    formFields: [
+      { id: 'name', placeholder: 'Name Field' },
+      { id: 'nickname', placeholder: 'Add a cool nickname' }
+    ]
+  }).then(function (context) {
+    console.log(context._isConfirm)
+    // do whatever you want with the form data
+    console.log(context.swalForm) // { name: 'user name', nickname: 'what the user sends' }
   })
 }
 
