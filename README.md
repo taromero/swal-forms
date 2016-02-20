@@ -7,7 +7,7 @@ Plugin for the Sweet Alert lib that adds an extra method to have **forms inside 
 #### Live Demo
 https://cdn.rawgit.com/taromero/swal-forms/master/live-demo/live-demo.html
 
-Check `live-demo/live-demo.js` to seee the example's code.
+Check `live-demo/live-demo.js` to see example's code.
 
 ##### Screenshot
 
@@ -37,7 +37,7 @@ swal.withForm({
     ]
 }, function(isConfirm) {
     // do whatever you want with the form data
-    console.log(this.swalForm); // { name: 'user name', nickname: 'what the user sends' }
+    console.log(this.swalForm) // { name: 'user name', nickname: 'what the user sends' }
 })
 ```
 
@@ -51,11 +51,24 @@ swal.withForm({
     ]
 }, function(isConfirm) {
     // do whatever you want with the form data
-    console.log(this.swalForm); // { name: 'user name', nickname: 'what the user sends' }
+    console.log(this.swalForm) // { name: 'user name', nickname: 'what the user sends' }
 })
 ```
 
 This will show the input with "Sample Id Field" as the placeholder. If no placeholder is wanted, you have to explicitly set it to ' ' (or any empty string).
+
+##### Promises
+You need to add a promises library or run this on an environment which supports promises, for this to work.
+
+The `withFromAsync` wrapper is available to use, which let you use promises to avoid nested callbacks in some cases. Example:
+
+```javascript
+swal.withFormAsync({
+  // same options
+}).then(function (context) {
+  console.log(context._isConfirm) // isConfirm comes in this attribute
+  console.log(context.swalForm) // getting context from the parameter rather than `this`, as it is difficult to bind on promises
+})
 
 ##### Usage
 Just add the css and js files after sweet alert ones.

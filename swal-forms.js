@@ -240,4 +240,13 @@
   function toSingleString (s1, s2) {
     return s1 + s2
   }
+
+  swal.withFormAsync = function (options) {
+    return new Promise(function (resolve, reject) {
+      swal.withForm(options, function (isConfirm) {
+        this._isConfirm = isConfirm
+        resolve(this)
+      })
+    })
+  }
 })()
