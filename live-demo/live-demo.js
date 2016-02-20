@@ -1,6 +1,7 @@
 window.onload = function () {
   document.querySelector('#sample1').addEventListener('click', sample1)
   document.querySelector('#complex').addEventListener('click', complex)
+  document.querySelector('#lotsOfFields').addEventListener('click', lotsOfFields)
 }
 
 function sample1 () {
@@ -52,5 +53,33 @@ function complex () {
   }, function (isConfirm) {
     // do whatever you want with the form data
     console.log(this.swalForm) // { name: 'user name', nickname: 'what the user sends' }
+  })
+}
+
+function lotsOfFields () {
+  swal.withForm({
+    title: 'Cool Swal-Forms example',
+    text: 'Any text that you consider useful for the form',
+    showCancelButton: true,
+    confirmButtonColor: '#DD6B55',
+    confirmButtonText: 'Get form data!',
+    closeOnConfirm: true,
+    formFields: [
+      { id: 'name', placeholder: 'Name Field' },
+      { id: 'nickname0', placeholder: 'Add a cool nickname' },
+      { id: 'nickname1', placeholder: 'Add a cool nickname' },
+      { id: 'nickname2', placeholder: 'Add a cool nickname' },
+      { id: 'nickname3', placeholder: 'Add a cool nickname' },
+      { id: 'nickname4', placeholder: 'Add a cool nickname' },
+      { id: 'nickname5', placeholder: 'Add a cool nickname' },
+      { id: 'nickname6', placeholder: 'Add a cool nickname' },
+      { id: 'nickname7', placeholder: 'Add a cool nickname' },
+      { id: 'nickname8', placeholder: 'Add a cool nickname' },
+      { id: 'nickname9', placeholder: 'Add a cool nickname' },
+      { id: 'nickname10', placeholder: 'Add a cool nickname' }
+    ]
+  }, function (isConfirm) {
+    // do whatever you want with the form data
+    console.log(this.swalForm)
   })
 }
