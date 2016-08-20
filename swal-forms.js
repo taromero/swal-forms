@@ -1,4 +1,5 @@
 ;(function () {
+  var warnTextNode
   // extend swal with a function for adding forms
   swal.withForm = function () {
     // initialize with field values supplied on `swal.withForm` call
@@ -52,7 +53,6 @@
         this.swalForm = swalFormInstance.getFormValues()
 
         if (doneFunction.apply(this, arguments) !== false) {
-
           // clean form to not interfere in normals sweet alerts
           document.querySelector('.swal-form').innerHTML = ''
         }
@@ -74,6 +74,13 @@
       function toValuableAttrs (tag) {
         var attr = {}
         attr[tag.id || tag.name] = tag.value
+        if (tag.dataset.swalFormsRequired && !tag.value) {
+          var warnMsg = 'Missing required attribute: ' + (tag.name || tag.id)
+          warnTextNode && warnTextNode.remove && warnTextNode.remove()
+          warnTextNode = document.createTextNode(warnMsg)
+          document.querySelector('.swal-form').appendChild(warnTextNode)
+          throw new Error(warnMsg)
+        }
         return attr
       }
 
@@ -190,6 +197,7 @@
       value: field.value || '',
       type: field.type || 'text',
       options: field.options || [],
+      required: field.required,
       isRadioOrCheckbox: function () {
         return isRadioOrCheckbox(input)
       },
@@ -197,10 +205,12 @@
         var inputTag
         if (input.type !== 'select') {
           inputTag = t("<input id='{id}' class='{clazz} swal-form-field' type='{type}' name='{name}'" +
-            " value='{value}' title='{placeholder}' placeholder='{placeholder}'>", input)
+            " value='{value}' title='{placeholder}' placeholder='{placeholder}'" +
+            ' data-swal-forms-required={required}>', input)
         } else {
           inputTag = t("<select id='{id}' class='{clazz} swal-form-field' name='{name}'" +
-            " value='{value}' title='{placeholder}' style='width:100%'>", input) +
+            " value='{value}' title='{placeholder}' style='width:100%'>" +
+            ' data-swal-forms-required={}', input) +
               input.options.reduce(toHtmlOptions, '') +
             '</select>'
         }
