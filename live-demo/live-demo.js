@@ -14,7 +14,7 @@ function sample1 () {
     confirmButtonText: 'Get form data!',
     closeOnConfirm: true,
     formFields: [
-      { id: 'name', placeholder: 'Name Field' },
+      { id: 'name', placeholder: 'Name Field', required: true },
       { id: 'nickname', placeholder: 'Add a cool nickname' }
     ]
   }, function (isConfirm) {
