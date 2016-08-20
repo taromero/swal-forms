@@ -50,7 +50,7 @@
       var doneFunction = swalArgs[1]
       swalArgs[1] = function (isConfirm) {
         // make form values available at `this` variable inside doneFunction
-        this.swalForm = swalFormInstance.getFormValues()
+        this.swalForm = swalFormInstance.getFormValues(isConfirm)
 
         if (doneFunction.apply(this, arguments) !== false) {
           // clean form to not interfere in normals sweet alerts
@@ -58,7 +58,7 @@
         }
       }
     },
-    getFormValues: function () {
+    getFormValues: function (isConfirm) {
       var inputHtmlCollection = document.getElementsByClassName('swal-form-field')
       var inputArray = [].slice.call(inputHtmlCollection)
 
@@ -74,7 +74,7 @@
       function toValuableAttrs (tag) {
         var attr = {}
         attr[tag.id || tag.name] = tag.value
-        if (tag.dataset.swalFormsRequired && !tag.value) {
+        if (isConfirm && tag.dataset.swalFormsRequired && !tag.value) {
           var warnMsg = 'Missing required attribute: ' + (tag.name || tag.id)
           warnTextNode && warnTextNode.remove && warnTextNode.remove()
           warnTextNode = document.createTextNode(warnMsg)
