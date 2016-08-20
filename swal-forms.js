@@ -204,7 +204,7 @@
               input.options.reduce(toHtmlOptions, '') +
             '</select>'
         }
-        var labelTag = t("<label for='{name}'>{label}</label>", input)
+        var labelTag = t("<label for='{id}'>{label}</label>", input)
 
         return inputTag + labelTag
 
