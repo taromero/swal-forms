@@ -9,8 +9,8 @@
     ]
   },
   "name": "swal-forms",
-  "description": "[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)",
-  "version": "1.0.0",
+  "description": "Extract data from forms within sweet-alert modals.",
+  "version": "0.3.2",
   "main": "swal-forms.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
