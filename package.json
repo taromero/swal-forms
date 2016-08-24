@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dandart/swal-forms.git"
+    "url": "git+https://github.com/taromero/swal-forms.git"
   },
   "keywords": [
     "swal-forms",
@@ -27,7 +27,7 @@
   "author": "Tomas Romero <canotto90@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dandart/swal-forms/issues"
+    "url": "https://github.com/taromero/swal-forms/issues"
   },
-  "homepage": "https://github.com/dandart/swal-forms#readme"
+  "homepage": "https://github.com/taromero/swal-forms#readme"
 }
