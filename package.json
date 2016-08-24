@@ -1,10 +1,33 @@
 {
   "standard": {
     "global": [
-      "swal", "console"
+      "swal",
+      "console"
     ],
     "ignore": [
       "live-demo/sweet-alert.js"
     ]
-  }
+  },
+  "name": "swal-forms",
+  "description": "Extract data from forms within sweet-alert modals.",
+  "version": "0.3.2",
+  "main": "swal-forms.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taromero/swal-forms.git"
+  },
+  "keywords": [
+    "swal-forms",
+    "swal",
+    "forms"
+  ],
+  "author": "Tomas Romero <canotto90@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/taromero/swal-forms/issues"
+  },
+  "homepage": "https://github.com/taromero/swal-forms#readme"
 }
