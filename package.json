@@ -1,10 +1,33 @@
 {
   "standard": {
     "global": [
-      "swal", "console"
+      "swal",
+      "console"
     ],
     "ignore": [
       "live-demo/sweet-alert.js"
     ]
-  }
+  },
+  "name": "swal-forms",
+  "description": "[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)",
+  "version": "1.0.0",
+  "main": "swal-forms.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dandart/swal-forms.git"
+  },
+  "keywords": [
+    "swal-forms",
+    "swal",
+    "forms"
+  ],
+  "author": "Tomas Romero <canotto90@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dandart/swal-forms/issues"
+  },
+  "homepage": "https://github.com/dandart/swal-forms#readme"
 }
