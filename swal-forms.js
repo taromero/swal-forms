@@ -204,7 +204,7 @@
       toHtml: function () {
         var inputTag;
         if(input.type == 'textarea') {
-          inputTag = t("<textarea id='{id}' class='{clazz} swal-form-textarea' name='{name}' placeholder='{placeholder}'>" +
+          inputTag = t("<textarea id='{id}' class='{clazz} swal-form-field' name='{name}' placeholder='{placeholder}'>" +
                        "{value}</textarea>", input);
         } else if (input.type !== 'select') {
           inputTag = t("<input id='{id}' class='{clazz} swal-form-field' type='{type}' name='{name}'" +
