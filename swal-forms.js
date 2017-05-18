@@ -219,7 +219,8 @@
         return inputTag + labelTag
 
         function toHtmlOptions (optionsString, option) {
-          return optionsString + t("<option value='{value}'>{text}</option>", option)
+            option.selected = option.selected ? ' selected' : ''
+            return optionsString + t("<option value='{value}'{selected}>{text}</option>", option)
         }
       }
     }
