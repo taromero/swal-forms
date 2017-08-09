@@ -9,11 +9,13 @@
     // make form values inserted by the user available at `doneFunction`
     swalForm.addWayToGetFormValuesInDoneFunction(arguments)
 
+    // Prepare arguments with the form html and html flag
+    arguments[0].text = swalForm.generateHtmlForm()
+    arguments[0].html = true
+
     // forward arguments
     swal.apply({}, arguments)
 
-    var htmlForm = swalForm.generateHtmlForm()
-    swalForm.insertFormInSwalModal(htmlForm)
     swalForm.allowClickingDirectlyOnInputs()
     swalForm.focusOnFirstInput()
     swalForm.markFirstRadioButtons()
