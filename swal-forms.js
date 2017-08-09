@@ -4,8 +4,6 @@
   swal.withForm = function () {
     // initialize with field values supplied on `swal.withForm` call
     var swalForm = new SwalForm(arguments[0].formFields)
-    // prevent successive calls to add duplicated form fields
-    swalForm.removeSwalForm()
     // make form values inserted by the user available at `doneFunction`
     swalForm.addWayToGetFormValuesInDoneFunction(arguments)
 
@@ -111,23 +109,6 @@
           }
         }
       }
-    },
-    insertFormInSwalModal: function (htmlFormString) {
-      var formTag = stringToTag(htmlFormString)
-      var sweetAlertModal = document.querySelector('.sweet-alert')
-      var buttonContainerTag = sweetAlertModal.querySelector('.sa-button-container') || sweetAlertModal.querySelector('.cancel')
-      // insert form before swal bottom buttons
-      sweetAlertModal.insertBefore(formTag, buttonContainerTag)
-
-      function stringToTag (string) {
-        var div = document.createElement('div')
-        div.innerHTML = string
-        return div.firstChild
-      }
-    },
-    removeSwalForm: function () {
-      var formTag = document.querySelector('.' + this.formClass)
-      formTag && document.querySelector('.sweet-alert').removeChild(formTag)
     },
     allowClickingDirectlyOnInputs: function () {
       // sweet-alert attaches an onblur handler which prevents clicks on of non
