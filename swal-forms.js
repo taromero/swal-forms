@@ -193,6 +193,8 @@
     var input = {
       id: field.id || '',
       name: field.name || '',
+      label: field.label || '',
+      clazz: field.clazz || '',
       placeholder: field.placeholder || camelCaseToHuman(field.id),
       value: field.value || '',
       type: field.type || 'text',
@@ -224,8 +226,9 @@
         }
       }
     }
-    input.label = input.isRadioOrCheckbox() ? (typeof field.label !== 'undefined' ? field.label : input.value) : ''
-    input.clazz = !input.isRadioOrCheckbox() ? 'nice-input' : 'patch-swal-styles-for-inputs'
+    // Should this label be set to title or id instead of value?
+    input.label = input.isRadioOrCheckbox() && input.label === '' ? input.value : input.label
+    input.clazz += input.isRadioOrCheckbox() ? ' patch-swal-styles-for-inputs' : ' nice-input'
 
     return input
 
