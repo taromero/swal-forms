@@ -4,16 +4,16 @@
   swal.withForm = function () {
     // initialize with field values supplied on `swal.withForm` call
     var swalForm = new SwalForm(arguments[0].formFields)
-    // prevent successive calls to add duplicated form fields
-    swalForm.removeSwalForm()
     // make form values inserted by the user available at `doneFunction`
     swalForm.addWayToGetFormValuesInDoneFunction(arguments)
+
+    // Prepare arguments with the form html and html flag
+    arguments[0].text = swalForm.generateHtmlForm()
+    arguments[0].html = true
 
     // forward arguments
     swal.apply({}, arguments)
 
-    var htmlForm = swalForm.generateHtmlForm()
-    swalForm.insertFormInSwalModal(htmlForm)
     swalForm.allowClickingDirectlyOnInputs()
     swalForm.focusOnFirstInput()
     swalForm.markFirstRadioButtons()
@@ -110,23 +110,6 @@
         }
       }
     },
-    insertFormInSwalModal: function (htmlFormString) {
-      var formTag = stringToTag(htmlFormString)
-      var sweetAlertModal = document.querySelector('.sweet-alert')
-      var buttonContainerTag = sweetAlertModal.querySelector('.sa-button-container') || sweetAlertModal.querySelector('.cancel')
-      // insert form before swal bottom buttons
-      sweetAlertModal.insertBefore(formTag, buttonContainerTag)
-
-      function stringToTag (string) {
-        var div = document.createElement('div')
-        div.innerHTML = string
-        return div.firstChild
-      }
-    },
-    removeSwalForm: function () {
-      var formTag = document.querySelector('.' + this.formClass)
-      formTag && document.querySelector('.sweet-alert').removeChild(formTag)
-    },
     allowClickingDirectlyOnInputs: function () {
       // sweet-alert attaches an onblur handler which prevents clicks on of non
       // button elements until click is made on the modal
@@ -193,6 +176,8 @@
     var input = {
       id: field.id || '',
       name: field.name || '',
+      label: field.label || '',
+      clazz: field.clazz || '',
       placeholder: field.placeholder || camelCaseToHuman(field.id),
       value: field.value || '',
       type: field.type || 'text',
@@ -224,8 +209,9 @@
         }
       }
     }
-    input.label = input.isRadioOrCheckbox() ? (typeof field.label !== 'undefined' ? field.label : input.value) : ''
-    input.clazz = !input.isRadioOrCheckbox() ? 'nice-input' : 'patch-swal-styles-for-inputs'
+    // Should this label be set to title or id instead of value?
+    input.label = input.isRadioOrCheckbox() && input.label === '' ? input.value : input.label
+    input.clazz += input.isRadioOrCheckbox() ? ' patch-swal-styles-for-inputs' : ' nice-input'
 
     return input
 
