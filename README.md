@@ -15,11 +15,11 @@ Check `live-demo/live-demo.js` to see example's code.
 
 #### Description
 
-It's totally unobtrusive with regular calls to `swal`, but it adds it a new method `swal.withForm` that wraps `swal` and lets you send an extra parameter `formFields` where you send the field data that will be use for generating the form.
+It's totally unobtrusive with regular calls to `swal`, but it adds to it a new method `swal.withForm` that wraps `swal` and lets you send an extra parameter `formFields`, where you send the field data that will be used for generating the form.
 
 (`id` || `name`) value will be used as the key for the object that will hold the element value.
 
-It **sends the form attributes as an object to the callback function**. This values are added to `this.swalForm` as it seemed like a better option for preventing compatibility issues with other plugins (the other options I considered was sending it as the second argument).
+It **sends the form attributes as an object to the callback function**. These values are added to `this.swalForm` as it seemed to be a better option for preventing compatibility issues with other plugins (the other options I considered was sending it as the second argument).
 
 ##### Example:
 
@@ -58,9 +58,9 @@ swal.withForm({
 This will show the input with "Sample Id Field" as the placeholder. If no placeholder is wanted, you have to explicitly set it to ' ' (or any empty string).
 
 ##### Promises
-You need to add a promises library or run this on an environment which supports promises, for this to work.
+You need to add a promises library, or run this on an environment which supports promises for this to work.
 
-The `withFromAsync` wrapper is available to use, which let you use promises to avoid nested callbacks in some cases. Example:
+The `withFromAsync` wrapper is available to use, which lets you use promises to avoid nested callbacks in some cases. Example:
 
 ```javascript
 swal.withFormAsync({
