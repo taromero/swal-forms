@@ -32,7 +32,7 @@ swal.withForm({
     confirmButtonText: 'Get form data!',
     closeOnConfirm: true,
     formFields: [
-        { id: 'name', placeholder:'Name Field', required },
+        { id: 'name', placeholder:'Name Field', required: true },
         { id: 'nickname', placeholder:'Add a cool nickname' }
     ]
 }, function(isConfirm) {
